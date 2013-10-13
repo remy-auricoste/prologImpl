@@ -14,15 +14,15 @@ import java.util.*;
  *
  * @version $Revision$ $Date$
  */
-public class Machine extends AProlog {
+public class Prolog extends AProlog {
 
     private ContexteQuestion contexteQuestion;
 
-    public Machine() {
+    public Prolog() {
         this(new MemoireRegleManager());
     }
 
-    public Machine(IRegleManager regleManager) {
+    public Prolog(IRegleManager regleManager) {
         super(regleManager);
     }
 
