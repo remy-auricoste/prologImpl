@@ -71,8 +71,13 @@ public class Prolog extends AProlog {
     }
 
     public IReponse questionner(ITerme terme) {
+        return questionner(Arrays.asList(terme));
+    }
+
+    @Override
+    public IReponse questionner(List<ITerme> termes) {
         contexteQuestion = new ContexteQuestion();
-        return questionnerImpl((Terme) terme);
+        return questionnerImpl(termes);
     }
 
     private Reponse questionnerImpl(Terme terme) {
