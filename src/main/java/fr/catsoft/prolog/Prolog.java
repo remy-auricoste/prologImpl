@@ -47,9 +47,9 @@ public class Prolog extends AProlog {
             return reponse;
         }
         if (!terme1.isParametrable()) {
-            return questionnerImpl(termes.subList(1, termes.size()));
+            return reponse.agregerReponse(questionnerImpl(termes.subList(1, termes.size())));
         }
-        Iterator<ITerme> iterator = reponse.getFaits().iterator();
+        Iterator<ITerme> iterator = reponse.getFaitsSimples().iterator();
         while (iterator.hasNext()) {
             ITerme fait = iterator.next();
             Map<String, Object> args = reponse.getArgs().get(fait);
@@ -62,9 +62,12 @@ public class Prolog extends AProlog {
                 newTerme.setMap(args);
                 subList.add(newTerme);
             }
-            if (!questionnerImpl(subList).isVrai()) {
+            Reponse sousReponse = questionnerImpl(subList);
+            if (!sousReponse.isVrai()) {
                 iterator.remove();
                 reponse.getArgs().remove(fait);
+            } else {
+
             }
         }
         return reponse;
