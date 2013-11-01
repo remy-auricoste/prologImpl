@@ -12,4 +12,8 @@ public class AgregationException extends RuntimeException {
     public AgregationException(String message) {
         super(message);
     }
+
+    public AgregationException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

@@ -47,7 +47,8 @@ public class Prolog extends AProlog {
             return reponse;
         }
         if (!terme1.isParametrable()) {
-            return reponse.agregerReponse(questionnerImpl(termes.subList(1, termes.size())));
+            reponse.agregerReponse(terme1, questionnerImpl(termes.subList(1, termes.size())));
+            return reponse;
         }
         Iterator<ITerme> iterator = reponse.getFaitsSimples().iterator();
         while (iterator.hasNext()) {
@@ -67,7 +68,7 @@ public class Prolog extends AProlog {
                 iterator.remove();
                 reponse.getArgs().remove(fait);
             } else {
-
+                reponse.agregerReponse(fait, sousReponse);
             }
         }
         return reponse;
