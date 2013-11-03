@@ -2,6 +2,7 @@ package fr.catsoft.prolog.test;
 
 import fr.catsoft.commons.common.exception.ApplicationException;
 import fr.catsoft.commons.common.logger.Logger;
+import fr.catsoft.commons.common.outil.IteratorOutil;
 import fr.catsoft.prolog.AgregationException;
 import fr.catsoft.prolog.Prolog;
 import fr.catsoft.prolog.Reponse;
@@ -20,25 +21,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class TestReponse extends TestCase {
-
-    private int getSize(Iterable<?> iterable) {
-        int cpt = 0;
-        for (Object objet : iterable) {
-            cpt++;
-        }
-        return cpt;
-    }
-
-    private <T> T get(Iterable<T> iterable, int index) {
-        int cpt = 0;
-        for (T objet : iterable) {
-            if (cpt == index) {
-                return objet;
-            }
-            cpt++;
-        }
-        throw new IndexOutOfBoundsException();
-    }
 
     private ITerme getTerme(String chaine) {
         return new Prolog().creerTerme(chaine);
@@ -102,10 +84,10 @@ public class TestReponse extends TestCase {
         for (List<ITerme> termes : reponse1.getFaitsMultiples()) {
             // Logger.instance().info(termes + "");
         }
-        assertEquals(8, getSize(reponse1.getFaitsMultiples()));
-        assertTrue(get(reponse1.getFaitsMultiples(), 0).equals(Arrays.asList(termeA1, termeB1, termeC1)));
-        assertTrue(get(reponse1.getFaitsMultiples(), 4).equals(Arrays.asList(termeA2, termeB1, termeC1)));
-        assertTrue(get(reponse1.getFaitsMultiples(), 7).equals(Arrays.asList(termeA2, termeB2, termeC2)));
+        assertEquals(8, IteratorOutil.convertir(reponse1.getFaitsMultiples()).size());
+        assertTrue(IteratorOutil.convertir(reponse1.getFaitsMultiples()).get(0).equals(Arrays.asList(termeA1, termeB1, termeC1)));
+        assertTrue(IteratorOutil.convertir(reponse1.getFaitsMultiples()).get(4).equals(Arrays.asList(termeA2, termeB1, termeC1)));
+        assertTrue(IteratorOutil.convertir(reponse1.getFaitsMultiples()).get(7).equals(Arrays.asList(termeA2, termeB2, termeC2)));
 
     }
 }
