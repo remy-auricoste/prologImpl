@@ -26,16 +26,6 @@ public class Prolog extends AProlog {
         super(regleManager);
     }
 
-    @Override
-    public IRegle creerRegle(ITerme resultat, ITerme... resultats) {
-        return new Regle(Arrays.asList(resultats), resultat);
-    }
-
-    @Override
-    protected ITerme newTerme(String nom, List<ITerme> args) {
-        return new Terme(nom, args);
-    }
-
     private Reponse questionnerImpl(List<? extends ITerme> termes) {
         // TODO optimiser ordre verification
         Terme terme1 = (Terme) termes.get(0);
@@ -132,10 +122,5 @@ public class Prolog extends AProlog {
     private Reponse retour(Reponse reponse, ITerme question) {
         contexteQuestion.getQuestionsEnCours().remove(question);
         return reponse;
-    }
-
-    @Override
-    public Terme creerTerme(String chaine) {
-        return (Terme) super.creerTerme(chaine);
     }
 }

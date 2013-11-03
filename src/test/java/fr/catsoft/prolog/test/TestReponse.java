@@ -5,6 +5,7 @@ import fr.catsoft.commons.common.logger.Logger;
 import fr.catsoft.commons.common.outil.IteratorOutil;
 import fr.catsoft.prolog.AgregationException;
 import fr.catsoft.prolog.Prolog;
+import fr.catsoft.prolog.PrologHelper;
 import fr.catsoft.prolog.Reponse;
 import fr.catsoft.prolog.spec.interf.ITerme;
 import junit.framework.TestCase;
@@ -23,7 +24,7 @@ import java.util.List;
 public class TestReponse extends TestCase {
 
     private ITerme getTerme(String chaine) {
-        return new Prolog().creerTerme(chaine);
+        return new PrologHelper().creerTerme(chaine);
     }
 
     @Test
