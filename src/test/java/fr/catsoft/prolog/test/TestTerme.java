@@ -85,4 +85,12 @@ public class TestTerme extends TestCase {
         ITerme attendu = new Terme("a", Arrays.asList(terme1, terme2));
         assertTrue(attendu.equals(terme));
     }
+
+    @Test
+    public void testToString() {
+        String chaine = "homme(jean)";
+        assertEquals(chaine, helper.creerTerme(chaine).toString());
+        chaine = "homme(noir(jean,bleu(jeanne),rouge))";
+        assertEquals(chaine, helper.creerTerme(chaine).toString());
+    }
 }
