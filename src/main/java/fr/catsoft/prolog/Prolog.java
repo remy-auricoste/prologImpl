@@ -34,10 +34,16 @@ public class Prolog extends AProlog {
             return reponse;
         }
         if (!reponse.isVrai()) {
+            // si la reponse est fausse, pas besoin de calculer les reponses des autres termes
             return reponse;
         }
         if (!terme1.isParametrable()) {
-            reponse.agregerReponse(terme1, questionnerImpl(termes.subList(1, termes.size())));
+            Reponse sousReponse = questionnerImpl(termes.subList(1, termes.size()));
+            if (!sousReponse.isVrai()) {
+                // renvoyer FAUX
+                return new Reponse();
+            }
+            reponse.agregerReponse(terme1, sousReponse);
             return reponse;
         }
         Iterator<ITerme> iterator = reponse.getFaitsSimples().iterator();
